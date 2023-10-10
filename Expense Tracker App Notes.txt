@@ -1,0 +1,10 @@
+Notes on the Expense Tracker Application
+
+- color choices? Not really liking the brown / cream color scheme
+- the buttons only are able to be clicked in very small portions of the button
+	- expand the target area? make the whole button clickable? Is this a bug with tkinter?
+- left panel, last button is blank
+- top panel, top right button off the screen.
+- whole right side is actually off the screen,
+- mode of payment does not show the option you have selected when you click on it 
+- once you click into the date field you have to tab out of it, you cannot click out
