@@ -13,8 +13,10 @@ from tkcalendar import DateEntry
 def listAllExpenses():
     # global variables
     global dbconnector, data_table
+    
     # clearing the table
     data_table.delete(*data_table.get_children())
+    
     # executing the SQL SELECT statement to retrieve the data from the database table
     all_data = dbconnector.execute('SELECT * FROM ExpenseTracker')
     
@@ -58,7 +60,7 @@ def clearFields():
     todayDate = datetime.datetime.now().date()
     
     # setting the values in entry fields back to initial
-    description.set(");payee.set(");amount.set(0.0);modeOfPayment.set('Cash'),dateField.set_date(todayDate)
+    description.set('');payee.set('');amount.set(0.0);modeOfPayment.set(''),dateField.set_date(todayDate)
     
     # removing the specified item from the selection
     data_table.selection_remove(*data_table.selection())
@@ -74,6 +76,7 @@ def removeExpense():
     # collecting the data from the selected row in dictionary format
     currentSelectedExpense = data_table.item(data_table.focus())
     
+    # defining a variable to store the values from the collected data in a list
     valuesSelected = currentSelectedExpense['values']
     
     #displaying a message box asking for confirmation
@@ -133,7 +136,7 @@ def addAnotherExpense():
         )
         dbconnector.commit()
         
-        # calling the clearFields() function
+        # calling the clearFields() function - clears the fields in the entry frame on left
         clearFields()
         
         # calling the listAllExpenses() function 
@@ -150,7 +153,7 @@ def editExpense():
     
     # defining a nested to update the details of the selected expense
     def editExistingExpense():
-        global dateField, ammount, description, payee, modeOfPayment
+        global dateField, amount, description, payee, modeOfPayment
         global dbconnector, data_table
         
     # collecting the data from the selected row in dictionary format
@@ -274,7 +277,7 @@ main_win = Tk()
 main_win.title("EXPENSE TRACKER")
 
 # setting the size and position of the window
-main_win.geometry("1415x650+400+100")
+main_win.geometry("1200x650+400+100")
 
 # disabling the resizable option for better UI
 main_win.resizable(0,0)
@@ -463,7 +466,7 @@ insertButton = Button(
     frameL3,
     text="Add Expense",
     font=("Bahnschrift Condensed","13"),
-    width=30,
+    width=20,
     bg="#90EE90",
     fg="#000000",
     relief=GROOVE,
@@ -475,9 +478,9 @@ insertButton = Button(
 #covert button
 convertButton = Button(
     frameL3,
-    text="Convert to Text before Adding",
+    text="Convert to Text",
     font=("Bahnschrift Condensed","13"),
-    width=30,
+    width=20,
     bg="#90EE90",
     fg="#000000",
     relief=GROOVE,
@@ -509,7 +512,7 @@ viewButton = Button(
     frameR1,
     text="View Selected Expense\'s Details",
     font=("Bahnschrift Condensed","13"),
-    width=35,
+    width=20,
     bg="#FFDEAD",
     fg="#000000",
     relief=GROOVE,
@@ -523,7 +526,7 @@ editButton = Button(
     frameR1,
     text="Edit Selected Expense",
     font=("Bahnschrift Condensed","13"),
-    width=35,
+    width=20,
     bg="#FFDEAD",
     fg="#000000",
     relief=GROOVE,
@@ -534,9 +537,9 @@ editButton = Button(
 
 convertSelectedButton = Button(
     frameR1,
-    text="Convert Selected Expense to a Sentence",
+    text="Convert Expense to Text",
     font=("Bahnschrift Condensed","13"),
-    width=35,
+    width=20,
     bg="#FFDEAD",
     fg="#000000",
     relief=GROOVE,
@@ -550,7 +553,7 @@ deleteButton = Button(
     frameR1,
     text="Delete Selected Expense",
     font=("Bahnschrift Condensed","13"),
-    width=35,
+    width=20,
     bg="#FFDEAD",
     fg="#000000",
     relief=GROOVE,
@@ -564,7 +567,7 @@ deleteAllButton = Button(
     frameR1,
     text="Delete All Expenses",
     font=("Bahnschrift Condensed","13"),
-    width=35,
+    width=20,
     bg="#FFDEAD",
     fg="#000000",
     relief=GROOVE,
@@ -622,7 +625,7 @@ data_table.column('#0', width=0, stretch=NO)
 data_table.column('#1', width=50, stretch=NO)
 data_table.column('#2', width=95, stretch=NO)
 data_table.column('#3', width=150, stretch=NO)
-data_table.column('#4', width=450, stretch=NO)
+data_table.column('#4', width=200, stretch=NO)
 data_table.column('#5', width=135, stretch=NO)
 data_table.column('#6', width=140, stretch=NO)
 
